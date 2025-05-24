@@ -13,37 +13,22 @@ const SignInScreen = () => {
 >
   
       <View style={styles.topSection}>
-      <MaskedView
-  maskElement={
-    <Text style={[styles.brand, { backgroundColor: 'transparent' }]}>
-      Ventry
-    </Text>
-  }
->
-  <LinearGradient
-    colors={['#AC8B1E', '#D0BD75', '#AC8B1E']}
-    start={{ x: 0, y: 0 }}
-    end={{ x: 1, y: 0 }}
-  >
-    <Text style={[styles.brand, { opacity: 0 }]}>
-      Ventry
-    </Text>
-  </LinearGradient>
-</MaskedView>
+      <Text style={styles.brand}>Ventry</Text>
 
-        <Text style={styles.tagline}>Because Access Is{'\n'}Everything</Text>
+
+        <Text style={styles.tagline}>Because Access Is Everything</Text>
 
         <TextInput
           placeholder="email@email.com"
           placeholderTextColor="#000"
-          style={styles.input}
+          style={styles.inputWide}
           keyboardType="email-address"
         />
 
         <TextInput
           placeholder="password"
           placeholderTextColor="#000"
-          style={styles.input}
+          style={styles.inputWide}
           secureTextEntry
         />
 
@@ -51,9 +36,16 @@ const SignInScreen = () => {
           <Text style={styles.forgotPasswordText}>Forgot password...</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.signInButton}>
-          <Text style={styles.signInButtonText}>Sign In</Text>
-        </TouchableOpacity>
+        <LinearGradient
+  colors={['#D4AF37', '#F4E195', '#D4AF37']}
+  start={{ x: 0, y: 0 }}
+  end={{ x: 1, y: 0 }}
+  style={styles.buttonGradient}
+>
+  <TouchableOpacity style={styles.buttonOverlay}>
+    <Text style={styles.signInButtonText}>Sign In</Text>
+  </TouchableOpacity>
+</LinearGradient>
 
         <Text style={styles.subtext}>Securely access your account</Text>
       </View>
@@ -64,14 +56,14 @@ const SignInScreen = () => {
         <TextInput
           placeholder="email@email.com"
           placeholderTextColor="#000"
-          style={styles.input}
+          style={styles.inputNarrow}
           keyboardType="email-address"
         />
 
         <TextInput
           placeholder="password"
           placeholderTextColor="#000"
-          style={styles.input}
+          style={styles.inputNarrow}
           secureTextEntry
         />
 
@@ -105,45 +97,48 @@ const SignInScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingTop: 30,
     backgroundColor: 'transparent', // gradient will show
   },
   topSection: {
-    marginTop: 10,
-    marginLeft: 20,
     alignItems: 'center',
+    marginTop: 40,
+    marginBottom: 0,
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingBottom: 10,
   },
   brand: {
     fontSize: 50,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  fontFamily: 'Georgia',
-  marginLeft: 190,
-  marginTop: 100,
+    fontWeight: 'bold',
+    color: '#000000',
+    textAlign: 'center',
+    marginBottom: 4,
+    marginTop: 100,
   },
   tagline: {
-    fontSize: 16,
-    color: '#ccc',
+    fontSize: 20,
+    color: '#000000',
     textAlign: 'center',
-    marginLeft: 150,
-    fontWeight: 600,
+    lineHeight: 22,
+    marginBottom: 10,
   },
-  input: {
+  inputWide: {
     backgroundColor: '#DBB740',
-    paddingVertical: 10,
+    paddingVertical: 3,
     paddingHorizontal: 20,
-    borderRadius: 10,
-    marginBottom: 15,
-    width: '80%',
-    maxWidth: 300,
-    alignSelf: 'center',  
+    borderRadius: 6,
+    marginBottom: 12,
+    width: 300,
+    alignSelf: 'center',
   },
   forgotPassword: {
     alignSelf: 'flex-end',
-    marginTop: 5,
+    marginTop: 2,
+    alignContent: 'center',
   },
   forgotPasswordText: {
     color: '#000',
@@ -151,49 +146,76 @@ const styles = StyleSheet.create({
   },
   signInButton: {
     backgroundColor: '#DBB740',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 15,
     borderRadius: 10,
-    marginBottom: 15,
-    width: '80%',
-    maxWidth: 300,
+    marginBottom: 10,
+    width: 110,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   signInButtonText: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
+  buttonGradient: {
+    borderRadius: 10,
+    width: 120,
+    height: 42,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center', // ✅ ensure child (TouchableOpacity) is centered
+    overflow: 'hidden', // 🧼 clip any overflow
+    marginBottom: 15,
+  },
+  buttonOverlay: {
+    flex: 1, // ✅ fill the gradient container fully
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+  },
   subtext: {
-    marginTop: 10,
+    marginTop: 6,
     fontSize: 12,
     color: '#ccc',
   },
   bottomSection: {
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 20,
     alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
+    justifyContent: 'center',
   },
   signupTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 20,
+    marginBottom: 10,
   },
+  inputNarrow: {
+  backgroundColor: '#DBB740',
+  paddingVertical: 10,
+  paddingHorizontal: 20,
+  borderRadius: 10,
+  marginBottom: 12,
+  width: 230,
+  alignSelf: 'center',
+},
   socialButton: {
     backgroundColor: '#DBB740',
   paddingVertical: 10,
   paddingHorizontal: 20,
   borderRadius: 10,
-  marginBottom: 15,
-  width: '80%',
-  maxWidth: 300,
+  marginBottom: 10,
+  width: 230,
   alignSelf: 'center',
   justifyContent: 'center',
   alignItems: 'center',
+  borderTopWidth: 1,
   },
   socialButtonText: {
     color: '#000',
